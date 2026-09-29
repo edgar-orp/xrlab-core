@@ -8,7 +8,11 @@ namespace XRlab.Core.Capture
         [SerializeField] private RawImage preview;
         [SerializeField] private AspectRatioFitter aspectRatioFitter;
 
+        private string a;
+
         private WebCamTexture webcamTexture;
+
+        public WebCamTexture Texture => webcamTexture;
 
         private void Start()
         {
