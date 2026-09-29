@@ -1,20 +1,23 @@
 using UnityEngine;
 
-namespace XRlab.Core.Capture
+namespace xrlab.core.capture
 {
     public class ImageCapture : MonoBehaviour
     {
         [SerializeField] private WebcamCapture webcamCapture;
-
-        private Texture2D capturedImage;
-
-        public Texture2D CapturedImage => capturedImage;
+        [SerializeField] private CaptureData captureData;
 
         public void Capture()
         {
             if (webcamCapture == null)
             {
                 Debug.LogWarning("WebcamCapture reference is missing.");
+                return;
+            }
+
+            if (captureData == null)
+            {
+                Debug.LogWarning("CaptureData reference is missing.");
                 return;
             }
 
@@ -26,7 +29,7 @@ namespace XRlab.Core.Capture
                 return;
             }
 
-            capturedImage = new Texture2D(
+            Texture2D capturedImage = new Texture2D(
                 webcamTexture.width,
                 webcamTexture.height,
                 TextureFormat.RGBA32,
@@ -34,6 +37,10 @@ namespace XRlab.Core.Capture
 
             capturedImage.SetPixels(webcamTexture.GetPixels());
             capturedImage.Apply();
+
+            captureData.SetImage(capturedImage);
+
+            webcamCapture.StopCamera();
         }
     }
 }

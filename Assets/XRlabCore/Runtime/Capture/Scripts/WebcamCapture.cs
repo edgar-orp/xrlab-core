@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace XRlab.Core.Capture
+namespace xrlab.core.capture
 {
     public class WebcamCapture : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace XRlab.Core.UI
+namespace xrlab.core.UI
 {
     public class ScreenManager : MonoBehaviour
     {
