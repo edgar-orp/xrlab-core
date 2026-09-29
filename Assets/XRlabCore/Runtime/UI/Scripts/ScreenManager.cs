@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace xrlab.core.UI
+namespace xrlab.core
 {
     public class ScreenManager : MonoBehaviour
     {
@@ -8,7 +8,7 @@ namespace xrlab.core.UI
 
         private int currentScreenIndex;
 
-        public ScreenType CurrentScreen => (ScreenType)currentScreenIndex;
+        public GameObject CurrentScreen => screens[currentScreenIndex];
 
         private void Start()
         {
@@ -23,8 +23,19 @@ namespace xrlab.core.UI
             ShowScreen(currentScreenIndex + 1);
         }
 
+        public void Back()
+        {
+            if (currentScreenIndex <= 0)
+                return;
+
+            ShowScreen(currentScreenIndex - 1);
+        }
+
         private void ShowScreen(int index)
         {
+            if (index < 0 || index >= screens.Length)
+                return;
+
             for (int i = 0; i < screens.Length; i++)
             {
                 screens[i].SetActive(i == index);

@@ -14,7 +14,7 @@ namespace xrlab.core.capture
 
         public WebCamTexture Texture => webcamTexture;
 
-        private void Start()
+        private void OnEnable()
         {
             StartCamera();
         }
